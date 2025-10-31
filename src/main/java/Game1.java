@@ -1,101 +1,214 @@
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Game1 {
 
-    // fields
+    // field 
     static Scanner scan = new Scanner(System.in);
-    static char player1; // 'X' or 'O'
-    static char player2; // 'X' or 'O'
-
+    static char player1;
+    static char player2;
+    
     public static void main(String[] args){
-        // Start with an empty board and show it
-        char[] board = new char[9];
-        Arrays.fill(board, ' ');
-        displayBoard(board);
-
-        // Decide marks and who goes first
         DecideP1andP2();
-        char first = DecideWhoGoesFirst();
+        DecideWhoGoesFirst();
 
         System.out.println();
-        System.out.println("*** GAME START ***");
-        System.out.println("First to move: " + first);
+        System.out.println();
+        System.out.println();
 
-        // TODO: implement game loop and call updateBoard(board)
+        char[] board = new char[9];
+        //this line fills the board array with empty spaces
+        Arrays.fill(board, ' ');
+        board[0]='1';
+        board[1]='2'; 
+        board[2]='3'; 
+        board[3]='4';
+        board[4]='5';
+        board[5]='6';
+        board[6]='7';
+        board[7]='8';
+        board[8]='9';
+        
+        DisplayTemplateBoard(board);
+
+        // decide who wants to be X and O
+        // decide who goes first
+        // display the template board and tell the user to choose which position to place their mark
+        // board accepts the user input and then displays the updated board with inputted mark
+        // repeat cycle between player1 and player2
+        // if there is already a mark in the selected position, throw error and prompt for new position
+        // first player to reach a win condition exits the game and presents winner
+        // if neither reaches win condition and board is filled display a TIE!
+        // prompt user to restart the program
     }
 
-    // ---------- board display ----------
-    public static void displayBoard(char[] board) {
+    // method
+
+    public static void DecideP1andP2(){
+        player1 = 0;
+        player2 = 0;
+        
+        System.out.println("*** Please choose which to play as: X or O ***");
+        System.out.println();
+
+        char input = scan.next().charAt(0);
+
+        if (input == 'X') {
+            player1 = 'X';
+            player2 = 'O';
+
+            System.out.println();
+            System.out.println();
+            System.out.println("*** LET'S START ***");
+            System.out.println();
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+            System.out.println("Player1 is X");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+            System.out.println("Player2 is O");
+
+        } else if (input == 'O') {
+            player1 = 'O';
+            player2 = 'X';
+            
+            System.out.println();
+            System.out.println();
+            System.out.println("*** LET'S START ***");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+            System.out.println();
+            System.out.println("Player1 is O");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+            System.out.println("Player2 is X");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+
+        } else {
+            do {
+                System.out.println("Please enter either X or O!");
+                input = scan.next().charAt(0);
+                if (input == 'X' || input == 'O') {
+                    if (input == 'X') {
+                        player1 = 'X';
+                        player2 = 'O';
+
+                        System.out.println();
+                        System.out.println();
+                        System.out.println("*** LET'S START ***");
+                        try {TimeUnit.MILLISECONDS.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+                        System.out.println();
+                        System.out.println("Player1 is X");
+                        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+                        System.out.println("Player2 is O");
+                        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+                        
+                        break;
+                    } else if (input == 'O') {
+                        player1 = 'O';
+                        player2 = 'X';
+
+                        System.out.println();
+                        System.out.println();
+                        System.out.println("*** LET'S START ***");
+                        try {TimeUnit.MILLISECONDS.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+                        System.out.println();
+                        System.out.println("Player1 is O");
+                        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+                        System.out.println("Player2 is X");
+                        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+
+                        break;
+                    }
+                }
+            }
+            while (input != 'X' || input != 'O');
+        }
+    }
+
+    public static void DecideWhoGoesFirst(){
+        System.out.println();
+        System.out.println();
+        System.out.println("*** LET'S DECIDE WHO GOES FIRST ***");
+        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+        System.out.println();
+        System.out.println("Lets flip a coin!");
+        try {TimeUnit.MILLISECONDS.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+
+        // player1 is X
+        if (player1 == 'X') {
+            System.out.println(player1 + " is heads and " + player2 + " is tails");
+        } else { // player1 is O
+            System.out.println(player1 + " is tails and " + player2 + " is heads");
+        }
+
+        double randomNumber = Math.random() * 100;
+
+        // Player with X goes first
+        if (randomNumber <= 50) {
+            System.out.print("The coin landed on ");
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.println("heads!");
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (player1 == 'X') {
+                System.out.println(player1 + " goes first!");
+            } else {
+                System.out.println(player2 + " goes first!");
+            }
+            
+        } else { // randomNumber > 50 -> Tails -> Player with O goes first
+            System.out.print("The coin landed on ");
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.println("tails!");
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (player1 == 'O') {
+                System.out.println(player1 + " goes first!");
+            } else {
+                System.out.println(player2 + " goes first!");
+            }
+        }
+    }
+    
+    public static void DisplayTemplateBoard(char[] board) {
         System.out.println(" " + board[0] + " | " + board[1] + " | " + board[2]);
         System.out.println("---+---+---");
         System.out.println(" " + board[3] + " | " + board[4] + " | " + board[5]);
         System.out.println("---+---+---");
         System.out.println(" " + board[6] + " | " + board[7] + " | " + board[8]);
+
+    }
+    // DisplayUpdatedBoard(){} Udit
+    public static void WinCondition(){
+        
     }
 
-    public static void updateBoard(){
-        // TODO: place mark at a position and re-print the board
-    }
-
-    // ---------- choose marks ----------
-    public static void DecideP1andP2(){
-        player1 = 0;
-        player2 = 0;
-
-        System.out.println();
-        System.out.println("*** Please choose which to play as: X or O ***");
-
-        char input;
-        while (true) {
-            String token = scan.next();
-            if (token.isEmpty()) {
-                System.out.println("Please enter X or O:");
-                continue;
-            }
-            input = Character.toUpperCase(token.charAt(0));
-            if (input == 'X' || input == 'O') break;
-            System.out.println("Please enter X or O:");
-        }
-
-        if (input == 'X') {
-            player1 = 'X';
-            player2 = 'O';
-        } else {
-            player1 = 'O';
-            player2 = 'X';
-        }
-
-        System.out.println();
-        System.out.println("*** LET'S START ***");
-        System.out.println("Player1 is " + player1);
-        System.out.println("Player2 is " + player2);
-    }
-
-    // ---------- coin flip; returns who goes first ----------
-    public static char DecideWhoGoesFirst(){
-        System.out.println();
-        System.out.println("*** LET'S DECIDE WHO GOES FIRST ***");
-        System.out.println("Let's flip a coin!");
-
-        if (player1 == 'X') {
-            System.out.println("Player1 (X) is HEADS, Player2 (O) is TAILS.");
-        } else {
-            System.out.println("Player1 (O) is TAILS, Player2 (X) is HEADS.");
-        }
-
-        boolean heads = new Random().nextBoolean();
-        if (heads) {
-            System.out.println("The coin landed on... HEADS!");
-            System.out.println("'X' goes first!");
-            return 'X';
-        } else {
-            System.out.println("The coin landed on... TAILS!");
-            System.out.println("'O' goes first!");
-            return 'O';
-        }
-    }
-
-    // Future:
-    // WinCondition(){}
-    // LoseCondition(){}
 }
