@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Game1 {
 
@@ -10,6 +11,35 @@ public class Game1 {
     public static void main(String[] args){
         DecideP1andP2();
         DecideWhoGoesFirst();
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        char[] board = new char[9];
+        //this line fills the board array with empty spaces
+        Arrays.fill(board, ' ');
+        board[0]='1';
+        board[1]='2'; 
+        board[2]='3'; 
+        board[3]='4';
+        board[4]='5';
+        board[5]='6';
+        board[6]='7';
+        board[7]='8';
+        board[8]='9';
+        
+        DisplayTemplateBoard(board);
+
+        // decide who wants to be X and O
+        // decide who goes first
+        // display the template board and tell the user to choose which position to place their mark
+        // board accepts the user input and then displays the updated board with inputted mark
+        // repeat cycle between player1 and player2
+        // if there is already a mark in the selected position, throw error and prompt for new position
+        // first player to reach a win condition exits the game and presents winner
+        // if neither reaches win condition and board is filled display a TIE!
+        // prompt user to restart the program
     }
 
     // method
@@ -31,7 +61,9 @@ public class Game1 {
             System.out.println();
             System.out.println("*** LET'S START ***");
             System.out.println();
-            System.out.println("Player1 i X");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+            System.out.println("Player1 is X");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
             System.out.println("Player2 is O");
 
         } else if (input == 'O') {
@@ -41,9 +73,12 @@ public class Game1 {
             System.out.println();
             System.out.println();
             System.out.println("*** LET'S START ***");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
             System.out.println();
             System.out.println("Player1 is O");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
             System.out.println("Player2 is X");
+            try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
 
         } else {
             do {
@@ -57,9 +92,12 @@ public class Game1 {
                         System.out.println();
                         System.out.println();
                         System.out.println("*** LET'S START ***");
+                        try {TimeUnit.MILLISECONDS.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
                         System.out.println();
-                        System.out.println("Player1 i X");
+                        System.out.println("Player1 is X");
+                        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
                         System.out.println("Player2 is O");
+                        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
                         
                         break;
                     } else if (input == 'O') {
@@ -69,9 +107,12 @@ public class Game1 {
                         System.out.println();
                         System.out.println();
                         System.out.println("*** LET'S START ***");
+                        try {TimeUnit.MILLISECONDS.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
                         System.out.println();
                         System.out.println("Player1 is O");
+                        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
                         System.out.println("Player2 is X");
+                        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
 
                         break;
                     }
@@ -80,14 +121,15 @@ public class Game1 {
             while (input != 'X' || input != 'O');
         }
     }
-    public static void DecideWhoGoesFirst(){
-        
 
+    public static void DecideWhoGoesFirst(){
         System.out.println();
         System.out.println();
         System.out.println("*** LET'S DECIDE WHO GOES FIRST ***");
+        try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
         System.out.println();
         System.out.println("Lets flip a coin!");
+        try {TimeUnit.MILLISECONDS.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
 
         // player1 is X
         if (player1 == 'X') {
@@ -100,15 +142,54 @@ public class Game1 {
 
         // Player with X goes first
         if (randomNumber <= 50) {
-            System.out.println("The coin landed on... heads!");
+            System.out.print("The coin landed on ");
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.println("heads!");
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (player1 == 'X') {
                 System.out.println(player1 + " goes first!");
             } else {
                 System.out.println(player2 + " goes first!");
             }
-            // randomNumber > 50 -> Tails -> Player with O goes first
-        } else {
-            System.out.println("The coin landed on... tails!");
+            
+        } else { // randomNumber > 50 -> Tails -> Player with O goes first
+            System.out.print("The coin landed on ");
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.print(". ");
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.println("tails!");
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (player1 == 'O') {
                 System.out.println(player1 + " goes first!");
             } else {
@@ -116,9 +197,18 @@ public class Game1 {
             }
         }
     }
-    // DisplayTemplateBoard(){}
-    // DisplayUpdatedBoard(){}
-    // WinCondition(){}
-    // LoseCondition(){}
+    
+    public static void DisplayTemplateBoard(char[] board) {
+        System.out.println(" " + board[0] + " | " + board[1] + " | " + board[2]);
+        System.out.println("---+---+---");
+        System.out.println(" " + board[3] + " | " + board[4] + " | " + board[5]);
+        System.out.println("---+---+---");
+        System.out.println(" " + board[6] + " | " + board[7] + " | " + board[8]);
+
+    }
+    // DisplayUpdatedBoard(){} Udit
+    public static void WinCondition(){
+        
+    }
 
 }
