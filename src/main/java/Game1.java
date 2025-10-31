@@ -2,21 +2,29 @@ import java.util.*;
 
 public class Game1 {
 
-    // field 
+    // fields
     static Scanner scan = new Scanner(System.in);
-    static char player1;
-    static char player2;
-    
+    static char player1; // 'X' or 'O'
+    static char player2; // 'X' or 'O'
+
     public static void main(String[] args){
-<<<<<<< HEAD
+        // Start with an empty board and show it
         char[] board = new char[9];
-        //this line fills the board array with empty spaces
         Arrays.fill(board, ' ');
-        board[0]='X'; board[4]='O'; board[8]='X';
         displayBoard(board);
 
+        // Decide marks and who goes first
+        DecideP1andP2();
+        char first = DecideWhoGoesFirst();
+
+        System.out.println();
+        System.out.println("*** GAME START ***");
+        System.out.println("First to move: " + first);
+
+        // TODO: implement game loop and call updateBoard(board)
     }
 
+    // ---------- board display ----------
     public static void displayBoard(char[] board) {
         System.out.println(" " + board[0] + " | " + board[1] + " | " + board[2]);
         System.out.println("---+---+---");
@@ -25,126 +33,69 @@ public class Game1 {
         System.out.println(" " + board[6] + " | " + board[7] + " | " + board[8]);
     }
 
-
-
-
     public static void updateBoard(){
-
+        // TODO: place mark at a position and re-print the board
     }
 
-=======
-        DecideP1andP2();
-        DecideWhoGoesFirst();
-    }
-
-    // method
-
+    // ---------- choose marks ----------
     public static void DecideP1andP2(){
         player1 = 0;
         player2 = 0;
-        
-        System.out.println("*** Please choose which to play as: X or O ***");
-        System.out.println();
 
-        char input = scan.next().charAt(0);
+        System.out.println();
+        System.out.println("*** Please choose which to play as: X or O ***");
+
+        char input;
+        while (true) {
+            String token = scan.next();
+            if (token.isEmpty()) {
+                System.out.println("Please enter X or O:");
+                continue;
+            }
+            input = Character.toUpperCase(token.charAt(0));
+            if (input == 'X' || input == 'O') break;
+            System.out.println("Please enter X or O:");
+        }
 
         if (input == 'X') {
             player1 = 'X';
             player2 = 'O';
-
-            System.out.println();
-            System.out.println();
-            System.out.println("*** LET'S START ***");
-            System.out.println();
-            System.out.println("Player1 i X");
-            System.out.println("Player2 is O");
-
-        } else if (input == 'O') {
+        } else {
             player1 = 'O';
             player2 = 'X';
-            
-            System.out.println();
-            System.out.println();
-            System.out.println("*** LET'S START ***");
-            System.out.println();
-            System.out.println("Player1 is O");
-            System.out.println("Player2 is X");
-
-        } else {
-            do {
-                System.out.println("Please enter either X or O!");
-                input = scan.next().charAt(0);
-                if (input == 'X' || input == 'O') {
-                    if (input == 'X') {
-                        player1 = 'X';
-                        player2 = 'O';
-
-                        System.out.println();
-                        System.out.println();
-                        System.out.println("*** LET'S START ***");
-                        System.out.println();
-                        System.out.println("Player1 i X");
-                        System.out.println("Player2 is O");
-                        
-                        break;
-                    } else if (input == 'O') {
-                        player1 = 'O';
-                        player2 = 'X';
-
-                        System.out.println();
-                        System.out.println();
-                        System.out.println("*** LET'S START ***");
-                        System.out.println();
-                        System.out.println("Player1 is O");
-                        System.out.println("Player2 is X");
-
-                        break;
-                    }
-                }
-            }
-            while (input != 'X' || input != 'O');
         }
-    }
-    public static void DecideWhoGoesFirst(){
-        
 
         System.out.println();
+        System.out.println("*** LET'S START ***");
+        System.out.println("Player1 is " + player1);
+        System.out.println("Player2 is " + player2);
+    }
+
+    // ---------- coin flip; returns who goes first ----------
+    public static char DecideWhoGoesFirst(){
         System.out.println();
         System.out.println("*** LET'S DECIDE WHO GOES FIRST ***");
-        System.out.println();
-        System.out.println("Lets flip a coin!");
+        System.out.println("Let's flip a coin!");
 
-        // player1 is X
         if (player1 == 'X') {
-            System.out.println(player1 + " is heads and " + player2 + " is tails");
-        } else { // player1 is O
-            System.out.println(player1 + " is tails and " + player2 + " is heads");
+            System.out.println("Player1 (X) is HEADS, Player2 (O) is TAILS.");
+        } else {
+            System.out.println("Player1 (O) is TAILS, Player2 (X) is HEADS.");
         }
 
-        double randomNumber = Math.random() * 100;
-
-        // Player with X goes first
-        if (randomNumber <= 50) {
-            System.out.println("The coin landed on... heads!");
-            if (player1 == 'X') {
-                System.out.println(player1 + " goes first!");
-            } else {
-                System.out.println(player2 + " goes first!");
-            }
-            // randomNumber > 50 -> Tails -> Player with O goes first
+        boolean heads = new Random().nextBoolean();
+        if (heads) {
+            System.out.println("The coin landed on... HEADS!");
+            System.out.println("'X' goes first!");
+            return 'X';
         } else {
-            System.out.println("The coin landed on... tails!");
-            if (player1 == 'O') {
-                System.out.println(player1 + " goes first!");
-            } else {
-                System.out.println(player2 + " goes first!");
-            }
+            System.out.println("The coin landed on... TAILS!");
+            System.out.println("'O' goes first!");
+            return 'O';
         }
     }
-    // DisplayTemplateBoard(){}
-    // DisplayUpdatedBoard(){}
+
+    // Future:
     // WinCondition(){}
     // LoseCondition(){}
->>>>>>> ca6c9ed8cecea9db251b6e5277ea3c3f8ed49838
-
 }
