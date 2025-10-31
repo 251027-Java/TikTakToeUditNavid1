@@ -7,7 +7,15 @@ public class Game1 {
     static Scanner scan = new Scanner(System.in);
     static char player1;
     static char player2;
-    
+
+    // All 8 winning triples (indices into board[0..8])
+    static final int[][] WIN_LINES = {
+            {0,1,2}, {3,4,5}, {6,7,8}, // rows
+            {0,3,6}, {1,4,7}, {2,5,8}, // columns
+            {0,4,8}, {2,4,6}           // diagonals
+    };
+
+
     public static void main(String[] args){
         DecideP1andP2();
         DecideWhoGoesFirst();
@@ -30,6 +38,8 @@ public class Game1 {
         board[8]='9';
         
         DisplayTemplateBoard(board);
+
+
 
         // decide who wants to be X and O
         // decide who goes first
@@ -206,9 +216,31 @@ public class Game1 {
         System.out.println(" " + board[6] + " | " + board[7] + " | " + board[8]);
 
     }
-    // DisplayUpdatedBoard(){} Udit
-    public static void WinCondition(){
-        
+
+
+    // Checks the current board for a winner or tie
+    // Returns 'X' or 'O' if someone has won, 'T' if tie, or ' ' (space) if game continues
+    public static char WinCondition(char[] board) {
+        // 1) Check each possible winning line
+        for (int[] line : WIN_LINES) {
+            int a = line[0], b = line[1], c = line[2];
+            char v = board[a];
+            if (v != ' ' && v == board[b] && v == board[c]) {
+                return v; // Found a winner ('X' or 'O')
+            }
+        }
+
+        // No winner yet → check for a full board (tie)
+        boolean anySpace = false;
+        for (char cell : board) {
+            if (cell == ' ') { anySpace = true; break; }
+        }
+        if (!anySpace) return 'T'; // Tie
+
+        //Otherwise keep playing
+        return ' ';
     }
+
+
 
 }
