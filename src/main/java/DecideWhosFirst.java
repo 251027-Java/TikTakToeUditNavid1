@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DecideWhosFirst {
     public Scanner scan = new Scanner(System.in);
-    
+
     public void decideXO() {
 
         printWithDelay("Welcome to 32-bit cURL TIKTACTOE!", 50);
@@ -62,7 +62,7 @@ public class DecideWhosFirst {
             printWithDelay("Tails will be O and starting second!", 50);
             System.out.println();
             System.out.println();
-        
+          
         } else { // randomNumber > 50 -> Tails -> Player with O goes first
             printWithDelay("The coin landed on . . .", 50);
             printWithDelay(" ", 500);
@@ -86,7 +86,7 @@ public class DecideWhosFirst {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            
         }
     }
 }
+

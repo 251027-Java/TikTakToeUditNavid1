@@ -3,11 +3,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Game1 {
 
-    // field 
+    // field
     static Scanner scan = new Scanner(System.in);
     static char player1;
     static char player2;
-    
+
     public static void main(String[] args){
         DecideP1andP2();
         DecideWhoGoesFirst();
@@ -20,15 +20,15 @@ public class Game1 {
         //this line fills the board array with empty spaces
         Arrays.fill(board, ' ');
         board[0]='1';
-        board[1]='2'; 
-        board[2]='3'; 
+        board[1]='2';
+        board[2]='3';
         board[3]='4';
         board[4]='5';
         board[5]='6';
         board[6]='7';
         board[7]='8';
         board[8]='9';
-        
+
         DisplayTemplateBoard(board);
 
         // decide who wants to be X and O
@@ -47,7 +47,7 @@ public class Game1 {
     public static void DecideP1andP2(){
         player1 = 0;
         player2 = 0;
-        
+
         System.out.println("*** Please choose which to play as: X or O ***");
         System.out.println();
 
@@ -69,7 +69,7 @@ public class Game1 {
         } else if (input == 'O') {
             player1 = 'O';
             player2 = 'X';
-            
+
             System.out.println();
             System.out.println();
             System.out.println("*** LET'S START ***");
@@ -98,7 +98,7 @@ public class Game1 {
                         try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
                         System.out.println("Player2 is O");
                         try {TimeUnit.MILLISECONDS.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
-                        
+
                         break;
                     } else if (input == 'O') {
                         player1 = 'O';
@@ -168,7 +168,7 @@ public class Game1 {
             } else {
                 System.out.println(player2 + " goes first!");
             }
-            
+
         } else { // randomNumber > 50 -> Tails -> Player with O goes first
             System.out.print("The coin landed on ");
             try {
@@ -197,7 +197,7 @@ public class Game1 {
             }
         }
     }
-    
+
     public static void DisplayTemplateBoard(char[] board) {
         System.out.println(" " + board[0] + " | " + board[1] + " | " + board[2]);
         System.out.println("---+---+---");
@@ -208,7 +208,7 @@ public class Game1 {
     }
     // DisplayUpdatedBoard(){} Udit
     public static void WinCondition(){
-        
+
     }
 
 }
